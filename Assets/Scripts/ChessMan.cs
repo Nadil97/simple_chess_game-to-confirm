@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class ChessMan : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    //References
+    public GameObject controller;
+    public GameObject movePlate;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //Position
+    private int xBoard = -1;
+    private int yBoard = -1;
+
+    //Variable to Keep track of "black" player "white" Player
+    private string player;
+
+    //references for
 }
