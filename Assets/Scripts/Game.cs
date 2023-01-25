@@ -7,6 +7,9 @@ public class Game : MonoBehaviour
 {
 
     public GameObject ChessPease;
+
+    private GameObject[,] position = new GameObject[8, 8];
+    private GameObject[,] playerBlack = new GameObject[16];
     // Start is called before the first frame update
     void Start()
     {
