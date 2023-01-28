@@ -67,7 +67,8 @@ public class Game : MonoBehaviour
 
     public bool PositionOnBoard(int x,int y)
     {
-
+        if (x < 0 || y < 0 || x >= position.GetLength(0) || y >= position.GetLength(1)) return false;
+        return true;
     }
 
     }
