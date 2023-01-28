@@ -58,4 +58,9 @@ public class ChessMan : MonoBehaviour
         this.transform.position = new Vector3(x, y, -1.0f);
     }
 
+    public int GetXBoard()
+    {
+        return xBoard;
+    }
+
 }
