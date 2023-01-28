@@ -60,6 +60,15 @@ public class Game : MonoBehaviour
     {
         position[x,y] = null;
     }
+    public GameObject GetPosition(int x,int y)
+    {
+       return position[x,y];
+    }
+
+    public bool PositionOnBoard(int x,int y)
+    {
+
+    }
 
     }
 
