@@ -32,6 +32,13 @@ public class Game : MonoBehaviour
             Create("black_pawn", 0, 6), Create("black_pawn", 1, 6), Create("black_pawn", 2, 6),
             Create("black_pawn", 3, 6), Create("black_pawn", 4, 6), Create("black_pawn", 5, 6),
             Create("black_pawn", 6, 6), Create("black_pawn", 7, 6) };
+
+        // set all piese postitions on the position board
+        for(int i=0;i < playerBlack.Length; i++)
+        {
+            setPosition(playerBlack[i]);
+            setPosition(playerWhite[i]);
+        }
     }
         
     }
