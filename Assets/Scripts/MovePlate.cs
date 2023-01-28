@@ -26,6 +26,14 @@ public class MovePlate : MonoBehaviour
 
     public void OnMouseUp()
     {
+        controller = GameObject.FindGameObjectWithTag("GameController");
 
+        if (attack)
+        {
+            GameObject cp = controller.GetComponent<Game>().GetPosition(matrixX, matrixY);
+            Destroy(cp);
+        }
+        controller.GetComponent<Game>().SetPositionEmpty(reference.GetComponent<ChessMan>().GetXBoard(),
+            reference.GetComponent<ChessMan>().GetYBord());
     }
 }
