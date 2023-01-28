@@ -63,4 +63,14 @@ public class ChessMan : MonoBehaviour
         return xBoard;
     }
 
+    public int GetYBoard()
+    {
+        return yBoard;
+    }
+
+    public void SetXBoard(int x)
+    {
+
+    }
+
 }
