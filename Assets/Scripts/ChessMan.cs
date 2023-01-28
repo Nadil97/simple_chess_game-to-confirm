@@ -70,7 +70,10 @@ public class ChessMan : MonoBehaviour
 
     public void SetXBoard(int x)
     {
-
+       xBoard = x;
     }
-
+    public void SetYBoard(int y)
+    {
+        yBoard = y;
+    }
 }

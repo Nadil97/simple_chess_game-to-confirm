@@ -16,11 +16,10 @@ public class Game : MonoBehaviour
 
     private bool gameOver =false;
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
-        playerWhite=new GameObject[]
-        {
-            playerWhite = new GameObject[] { Create("white_rook", 0, 0), Create("white_knight", 1, 0),
+        
+        playerWhite = new GameObject[] { Create("white_rook", 0, 0), Create("white_knight", 1, 0),
             Create("white_bishop", 2, 0), Create("white_queen", 3, 0), Create("white_king", 4, 0),
             Create("white_bishop", 5, 0), Create("white_knight", 6, 0), Create("white_rook", 7, 0),
             Create("white_pawn", 0, 1), Create("white_pawn", 1, 1), Create("white_pawn", 2, 1),
@@ -36,12 +35,30 @@ public class Game : MonoBehaviour
         // set all piese postitions on the position board
         for(int i=0;i < playerBlack.Length; i++)
         {
-            setPosition(playerBlack[i]);
-            setPosition(playerWhite[i]);
+            SetPosition(playerBlack[i]);
+            SetPosition(playerWhite[i]);
         }
     }
-        
+       public GameObject Create(string name,int x,int y)
+    {
+        GameObject obj = Instantiate(ChessPease, new Vector3(0, 0, -1), Quaternion.identity);
+        ChessMan cm = obj.GetComponent<ChessMan>();
+        cm.name = name;
+        cm.SetXBoard(x);
+        cm.SetYBoard(y);
+        cm.Activate();
+        return obj;
+    } 
+
+    public void SetPosition(GameObject obj)
+    {
+        ChessMan cm = obj.GetComponent<ChessMan>();
+
+        position[cm.GetXBoard(), cm.GetYBoard()] = obj;
     }
+
+    }
+
 
     
 
