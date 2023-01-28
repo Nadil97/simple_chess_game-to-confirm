@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class MovePlate : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject controller;
+
+    GameObject reference = null;
+
+    // Board positons
+    int matrixX;
+    int matrixY;
+
+    //false: Movement,true:attacking
+    public bool attack =false;
+
+    public void Start()
     {
-        
+        if (attack)
+        {
+            //Change to red
+            gameObject.GetComponent<SpriteRenderer>().color=new Color(1.0f, 0.0f, 0.0f,1.0f)
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnMouseUp()
     {
-        
+
     }
 }
