@@ -56,6 +56,10 @@ public class Game : MonoBehaviour
 
         position[cm.GetXBoard(), cm.GetYBoard()] = obj;
     }
+    public void SetPositionEmpty(int x,int y)
+    {
+        position[x,y] = null;
+    }
 
     }
 
