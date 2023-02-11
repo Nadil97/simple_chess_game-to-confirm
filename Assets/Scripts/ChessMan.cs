@@ -118,6 +118,25 @@ public class ChessMan : MonoBehaviour
                 LineMovePlate(1, -1);
                 LineMovePlate(-1, 1);
                 LineMovePlate(-1, -1);
+                break;
+            case "black_king":
+            case "white_king":
+                SurroundMovePlate();
+                break;
+            case "black_rook":
+            case "white_rook":
+                LineMovePlate(1, 0);
+                LineMovePlate(0, 1);
+                LineMovePlate(-1, 0);
+                LineMovePlate(0,-1);
+                break;
+            case "black_pawn":
+                PawnMovePlate(xBoard, yBoard - 1);
+                break ;
+            case "white_pawn":
+                PawnMovePlate(xBoard, yBoard - 1);
+                break;
+
 
 
 
