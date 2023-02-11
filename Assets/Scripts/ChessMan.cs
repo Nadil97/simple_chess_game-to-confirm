@@ -91,4 +91,12 @@ public class ChessMan : MonoBehaviour
             DestroyMovePlates(movePlates[i]);
         }
     }
+
+    public void InitiateMovePlates()
+    {
+        switch (this.name)
+        {
+
+        }
+    }
 }
