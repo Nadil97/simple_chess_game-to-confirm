@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
@@ -69,6 +70,15 @@ public class Game : MonoBehaviour
     {
         if (x < 0 || y < 0 || x >= position.GetLength(0) || y >= position.GetLength(1)) return false;
         return true;
+    }
+    public string GetCurrentPlayer()
+    {
+        return currentPlayer;
+    }
+
+    public bool IsGameOver()
+    {
+        return gameOver;
     }
 
     }
