@@ -76,5 +76,19 @@ public class ChessMan : MonoBehaviour
     {
         yBoard = y;
     }
-    private void OnMouseUp
+    private void OnMouseUp()
+    {
+        DestroyMovePlates();
+
+        InitiateMovePlates();
+    }
+
+    public void DestroyMovePlates()
+    {
+        GameObject[] movePlates = GameObject.FindGameObjectWithTag("MovePlate");
+        for (int i = 0; i < movePlates.Length; i++)
+        {
+            DestroyMovePlates(movePlates[i]);
+        }
+    }
 }
