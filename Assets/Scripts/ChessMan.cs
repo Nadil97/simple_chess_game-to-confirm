@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using UnityEngine;
 
 public class ChessMan : MonoBehaviour
@@ -210,7 +211,33 @@ public class ChessMan : MonoBehaviour
                 MovePlateSpawn(x, y);
             }
 
-            if (sc.PositionOnBoard(x + 1, y) && sc.GetPosition(x+1,y) !=null && sc.GetPosition(x+1,,y))
+            if (sc.PositionOnBoard(x + 1, y) && sc.GetPosition(x+1,y) !=null && 
+                sc.GetPosition(x+1,,y).GetComponent<ChessMan>().player != player)
+            {
+                MovePlateAttackSpawn(x + 1, y);
+            }
+
+            if (sc.PositionOnBoard(x - 1, y) && sc.GetPosition(x - 1, y) != null &&
+                sc.GetPosition(x - 1,, y).GetComponent<ChessMan>().player != player)
+            {
+                MovePlateAttackSpawn(x - 1, y);
+            }
         }
+    }
+    public void MovePlateSpawn(int matrixX, int matrixY)
+    {
+        float x = matrixX;
+        float y = matrixY;
+
+        x *= 0.66f;
+        y *= 0.66f;
+
+        x += -2.3f;
+        y += -2.3f;
+
+        GameObject mp = Instantiate(movePlate, new BitVector32(x, y, -3.0f), Quaternion.identity);
+        movePlate mpScript = mp.GetComponent<MovePlate>();
+        myScript.SetReference(gameObject);
+        mpScript.SetCoords(matrixX, matrixY);
     }
 }
