@@ -196,8 +196,21 @@ public class ChessMan : MonoBehaviour
             }
             else if (cp.GetComponent<ChessMan>().player != player)
             {
-                
+                MovePlateAttackSpawn(x, y);
             }
+        }
+    }
+    public void PawnMovePlate(int x,int y)
+    {
+        Game sc = controller.GetComponent<Game>();
+        if (sc.PositionOnBoard(x, y))
+        {
+            if (sc.GetPosition(x, y) == null)
+            {
+                MovePlateSpawn(x, y);
+            }
+
+            if (sc.PositionOnBoard(x + 1, y) && sc.GetPosition(x+1,y) !=null && sc.GetPosition(x+1,,y))
         }
     }
 }
