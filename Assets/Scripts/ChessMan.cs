@@ -79,9 +79,13 @@ public class ChessMan : MonoBehaviour
     }
     private void OnMouseUp()
     {
-        DestroyMovePlates();
+        if (!controller.GetComponent<Game>().IsGameOver() && controller.GetComponent<Game>().GetCurrentPlayer() == player)
+        {
+            DestroyMovePlates();
 
-        InitiateMovePlates();
+            InitiateMovePlates();
+        }
+            
     }
 
     public void DestroyMovePlates()
@@ -105,7 +109,7 @@ public class ChessMan : MonoBehaviour
                 LineMovePlate(1, 1);
                 LineMovePlate(-1, 0);
                 LineMovePlate(0, -1);
-                LineMovePlate(-1, -1);
+                LineMovePlate(-1,-1);
                 LineMovePlate(-1, 1);
                 LineMovePlate(1, -1);
                 break;
@@ -167,7 +171,7 @@ public class ChessMan : MonoBehaviour
     {
         PointMovePlate(xBoard + 1, yBoard + 2);
         PointMovePlate(xBoard - 1, yBoard + 2);
-        PointMovePlate(xBoard + 1, yBoard + 1);
+        PointMovePlate(xBoard + 2, yBoard + 1);
         PointMovePlate(xBoard + 2, yBoard - 1);
         PointMovePlate(xBoard + 1, yBoard - 2);
         PointMovePlate(xBoard - 1, yBoard - 2);
@@ -179,11 +183,11 @@ public class ChessMan : MonoBehaviour
     {
         PointMovePlate(xBoard, yBoard + 1);
         PointMovePlate(xBoard, yBoard - 1);
+        PointMovePlate(xBoard -1, yBoard + 0);
         PointMovePlate(xBoard -1, yBoard - 1);
-        PointMovePlate(xBoard -1, yBoard - 0);
         PointMovePlate(xBoard -1, yBoard + 1);
-        PointMovePlate(xBoard +1, yBoard - 1);
         PointMovePlate(xBoard +1, yBoard - 0);
+        PointMovePlate(xBoard +1, yBoard - 1);
         PointMovePlate(xBoard +1, yBoard + 1);
 
     }

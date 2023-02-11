@@ -81,6 +81,18 @@ public class Game : MonoBehaviour
         return gameOver;
     }
 
+    public void NextTurn()
+    {
+        if (currentPlayer == "white")
+        {
+            currentPlayer = "black";
+        }
+        else
+        {
+            currentPlayer = "white";
+        }
+    }
+
     }
 
 
