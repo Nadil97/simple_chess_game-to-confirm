@@ -137,10 +137,44 @@ public class ChessMan : MonoBehaviour
                 PawnMovePlate(xBoard, yBoard - 1);
                 break;
 
-
-
-
-
         }
+    }
+
+    public void LineMovePlate(int xIncrement,int yIncrement)
+    {
+        Game sc = controller.GetComponent<Game>();
+
+        int x = xBoard + xIncrement;
+        int y = yBoard + yIncrement;
+
+        while (sc.PositionOnBoard(x,y) && sc.GetPosition(x, y) == null)
+        {
+            movePlateSpawn(x, y);
+            x += xIncrement;
+            y += yIncrement;
+        }
+
+        if(sc.PositionOnBoard(x, y) && sc.GetPosition(x,y).GetComponent<ChessMan>().player != player)
+        {
+            movePlateAttackSpawn(x, y);
+        }
+    }
+    public void LMovePlate()
+    {
+        PointMovePlate(xBoard + 1, yBoard + 2);
+        PointMovePlate(xBoard - 1, yBoard + 2);
+        PointMovePlate(xBoard + 1, yBoard + 1);
+        PointMovePlate(xBoard + 2, yBoard - 1);
+        PointMovePlate(xBoard + 1, yBoard - 2);
+        PointMovePlate(xBoard - 1, yBoard - 2);
+        PointMovePlate(xBoard - 2, yBoard + 1);
+        PointMovePlate(xBoard - 2, yBoard - 1);
+    }
+
+    public void SurroundMovePlate()
+    {
+        PointMovePlate(xBoard, yBoard + 1);
+        PointMovePlate(xBoard, yBoard - 1);
+
     }
 }
