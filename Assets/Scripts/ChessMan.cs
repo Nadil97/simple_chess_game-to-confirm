@@ -76,4 +76,5 @@ public class ChessMan : MonoBehaviour
     {
         yBoard = y;
     }
+    private void OnMouseUp
 }

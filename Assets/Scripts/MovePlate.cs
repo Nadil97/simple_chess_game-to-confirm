@@ -20,7 +20,7 @@ public class MovePlate : MonoBehaviour
         if (attack)
         {
             //Change to red
-            gameObject.GetComponent<SpriteRenderer>().color=new Color(1.0f, 0.0f, 0.0f,1.0f)
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
         }
     }
 
@@ -34,6 +34,29 @@ public class MovePlate : MonoBehaviour
             Destroy(cp);
         }
         controller.GetComponent<Game>().SetPositionEmpty(reference.GetComponent<ChessMan>().GetXBoard(),
-            reference.GetComponent<ChessMan>().GetYBord());
+            reference.GetComponent<ChessMan>().GetYBoard());
+
+
+        reference.GetComponent<ChessMan>().SetXBoard(matrixX);
+        reference.GetComponent<ChessMan>().SetYBoard(matrixY);
+        reference.GetComponent<ChessMan>().SetCoords();
+
+        controller.GetComponent<Game>().DestroyMovePlates();
+    }
+
+    public void SetCoords(int x,int y)
+    {
+        matrixX = x;
+        matrixY = y;
+    }
+
+    public void  SetReference(GameObject obj)
+    {
+        reference = obj;
+    }
+
+    public GameObject GetReference()
+    {
+        return reference;   
     }
 }
