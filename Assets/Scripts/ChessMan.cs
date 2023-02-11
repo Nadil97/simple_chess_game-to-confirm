@@ -29,19 +29,19 @@ public class ChessMan : MonoBehaviour
 
         switch(this.name)
         {
-            case "black_queen":this.GetComponent<SpriteRenderer>().sprite = black_queen;break;
-            case "black_knight": this.GetComponent<SpriteRenderer>().sprite = black_knight; break;
-            case "black_bishop": this.GetComponent<SpriteRenderer>().sprite = black_bishop; break;
-            case "black_king": this.GetComponent<SpriteRenderer>().sprite = black_king; break;
-            case "black_rook": this.GetComponent<SpriteRenderer>().sprite = black_rook; break;
-            case "black_pawn": this.GetComponent<SpriteRenderer>().sprite = black_pawn; break;
+            case "black_queen":this.GetComponent<SpriteRenderer>().sprite = black_queen; player = "black"; break;
+            case "black_knight": this.GetComponent<SpriteRenderer>().sprite = black_knight; player = "black"; break;
+            case "black_bishop": this.GetComponent<SpriteRenderer>().sprite = black_bishop; player = "black"; break;
+            case "black_king": this.GetComponent<SpriteRenderer>().sprite = black_king; player = "black"; break;
+            case "black_rook": this.GetComponent<SpriteRenderer>().sprite = black_rook; player = "black"; break;
+            case "black_pawn": this.GetComponent<SpriteRenderer>().sprite = black_pawn; player = "black"; break;
 
-            case "white_queen": this.GetComponent<SpriteRenderer>().sprite = white_queen; break;
-            case "white_knight": this.GetComponent<SpriteRenderer>().sprite = white_knight; break;
-            case "white_bishop": this.GetComponent<SpriteRenderer>().sprite = white_bishop; break;
-            case "white_king": this.GetComponent<SpriteRenderer>().sprite = white_king; break;
-            case "white_rook": this.GetComponent<SpriteRenderer>().sprite = white_rook; break;
-            case "white_pawn": this.GetComponent<SpriteRenderer>().sprite = white_pawn; break;
+            case "white_queen": this.GetComponent<SpriteRenderer>().sprite = white_queen; player = "white"; break;
+            case "white_knight": this.GetComponent<SpriteRenderer>().sprite = white_knight; player = "white"; break;
+            case "white_bishop": this.GetComponent<SpriteRenderer>().sprite = white_bishop; player = "white"; break;
+            case "white_king": this.GetComponent<SpriteRenderer>().sprite = white_king; player = "white"; break;
+            case "white_rook": this.GetComponent<SpriteRenderer>().sprite = white_rook; player = "white"; break;
+            case "white_pawn": this.GetComponent<SpriteRenderer>().sprite = white_pawn; player = "white"; break;
         }
     }
 
@@ -86,10 +86,11 @@ public class ChessMan : MonoBehaviour
 
     public void DestroyMovePlates()
     {
-        GameObject[] movePlates = GameObject.FindGameObjectWithTag("MovePlate");
+        GameObject[] movePlates = GameObject.FindGameObjectsWithTag("MovePlate");
         for (int i = 0; i < movePlates.Length; i++)
         {
-            DestroyMovePlates(movePlates[i]);
+            //DestroyMovePlates(movePlates[i]);
+            Destroy(movePlates[i]);
         }
     }
 
@@ -150,14 +151,16 @@ public class ChessMan : MonoBehaviour
 
         while (sc.PositionOnBoard(x,y) && sc.GetPosition(x, y) == null)
         {
-            movePlateSpawn(x, y);
+            //movePlateSpawn(x, y);
+            MovePlateSpawn(x, y);
             x += xIncrement;
             y += yIncrement;
         }
 
         if(sc.PositionOnBoard(x, y) && sc.GetPosition(x,y).GetComponent<ChessMan>().player != player)
         {
-            movePlateAttackSpawn(x, y);
+            //movePlateAttackSpawn(x, y);
+            MovePlateAttackSpawn(x, y);
         }
     }
     public void LMovePlate()
@@ -212,13 +215,13 @@ public class ChessMan : MonoBehaviour
             }
 
             if (sc.PositionOnBoard(x + 1, y) && sc.GetPosition(x+1,y) !=null && 
-                sc.GetPosition(x+1,,y).GetComponent<ChessMan>().player != player)
+                sc.GetPosition(x+1,y).GetComponent<ChessMan>().player != player)
             {
                 MovePlateAttackSpawn(x + 1, y);
             }
 
             if (sc.PositionOnBoard(x - 1, y) && sc.GetPosition(x - 1, y) != null &&
-                sc.GetPosition(x - 1,, y).GetComponent<ChessMan>().player != player)
+                sc.GetPosition(x - 1, y).GetComponent<ChessMan>().player != player)
             {
                 MovePlateAttackSpawn(x - 1, y);
             }
@@ -235,9 +238,27 @@ public class ChessMan : MonoBehaviour
         x += -2.3f;
         y += -2.3f;
 
-        GameObject mp = Instantiate(movePlate, new BitVector32(x, y, -3.0f), Quaternion.identity);
-        movePlate mpScript = mp.GetComponent<MovePlate>();
-        myScript.SetReference(gameObject);
+        GameObject mp = Instantiate(movePlate, new Vector3(x, y, -3.0f), Quaternion.identity);
+        MovePlate mpScript = mp.GetComponent<MovePlate>();
+        mpScript.SetReference(gameObject);
+        mpScript.SetCoords(matrixX, matrixY);
+    }
+
+    public void MovePlateAttackSpawn(int matrixX, int matrixY)
+    {
+        float x = matrixX;
+        float y = matrixY;
+
+        x *= 0.66f;
+        y *= 0.66f;
+
+        x += -2.3f;
+        y += -2.3f;
+
+        GameObject mp = Instantiate(movePlate, new Vector3(x, y, -3.0f), Quaternion.identity);
+        MovePlate mpScript = mp.GetComponent<MovePlate>();
+        mpScript.attack = true;
+        mpScript.SetReference(gameObject);
         mpScript.SetCoords(matrixX, matrixY);
     }
 }
