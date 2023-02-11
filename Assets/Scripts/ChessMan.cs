@@ -96,6 +96,31 @@ public class ChessMan : MonoBehaviour
     {
         switch (this.name)
         {
+            case "black_queen":
+            case "white_queen":
+                LineMovePlate(1, 0);
+                LineMovePlate(0, 1);
+                LineMovePlate(1, 1);
+                LineMovePlate(-1, 0);
+                LineMovePlate(0, -1);
+                LineMovePlate(-1, -1);
+                LineMovePlate(-1, 1);
+                LineMovePlate(1, -1);
+                break;
+
+            case "black_knight":
+            case "white_knight":
+                LMovePlate();
+                break;
+            case "black_bishop":
+            case "white_bishop":
+                LineMovePlate(1, 1);
+                LineMovePlate(1, -1);
+                LineMovePlate(-1, 1);
+                LineMovePlate(-1, -1);
+
+
+
 
         }
     }
