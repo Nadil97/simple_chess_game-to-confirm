@@ -175,6 +175,29 @@ public class ChessMan : MonoBehaviour
     {
         PointMovePlate(xBoard, yBoard + 1);
         PointMovePlate(xBoard, yBoard - 1);
+        PointMovePlate(xBoard -1, yBoard - 1);
+        PointMovePlate(xBoard -1, yBoard - 0);
+        PointMovePlate(xBoard -1, yBoard + 1);
+        PointMovePlate(xBoard +1, yBoard - 1);
+        PointMovePlate(xBoard +1, yBoard - 0);
+        PointMovePlate(xBoard +1, yBoard + 1);
 
+    }
+
+    public void PointMovePlate(int x ,int y)
+    {
+        Game sc = controller.GetComponent<Game>();
+        if (sc.PositionOnBoard(x, y))
+        {
+            GameObject cp = sc.GetPosition(x, y);
+            if(cp == null)
+            {
+                MovePlateSpawn(x, y);
+            }
+            else if (cp.GetComponent<ChessMan>().player != player)
+            {
+                
+            }
+        }
     }
 }
